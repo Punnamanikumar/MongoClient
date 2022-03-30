@@ -66,19 +66,78 @@
 //! Step -4
 //! Query the Documents (GET)
 
-mongodb = require("mongodb").MongoClient;
+// mongodb = require("mongodb").MongoClient;
 
+// const mongoUrl = "mongodb://localhost:27017";
+
+// mongodb.connect(mongoUrl, (err, suc) => {
+//   if (err) throw err;
+//   const actualDb = suc.db("school");
+//   actualDb
+//     .collection("students")
+//     .find({ name: "a" })
+//     .toArray((err, result) => {
+//       //! * toArray() Extra func in MongoClinet
+//       if (err) console.log(err);
+//       console.log(result);
+//     });
+// });
+
+//! Step -5
+//! Updating the documents
+
+// mongodb = require("mongodb").MongoClient;
+
+// const mongoUrl = "mongodb://localhost:27017";
+
+// mongodb.connect(mongoUrl, (err, suc) => {
+//   if (err) console.log(err);
+//   const actualDb = suc.db("school");
+
+//! Update SingleDocument.
+// let query = { roll: 1 };
+// let newData = { name: "AAA" };
+// actualDb
+//   .collection("students")
+//   .updateOne(query, { $set: newData }, (err, result) => {
+//     if (err) console.log(err);
+//     console.log("DOcument Updated Sucessfully", result);
+//   });
+
+//! Update ManyDocuments.
+//   let query = { roll: 1 };
+//   let newData = { name: "d" };
+//   actualDb
+//     .collection("students")
+//     .updateMany(query, { $set: newData }, (err, result) => {
+//       if (err) console.log(err);
+//       console.log("Update Many Sucessful");
+//     });
+// });
+
+//! Step -6
+//! Delete the documents
+
+mongodb = require("mongodb").MongoClient;
 const mongoUrl = "mongodb://localhost:27017";
 
 mongodb.connect(mongoUrl, (err, suc) => {
-  if (err) throw err;
+  if (err) console.log(err);
   const actualDb = suc.db("school");
-  actualDb
-    .collection("students")
-    .find({ name: "a" })
-    .toArray((err, result) => {
-      //! * toArray() Extra func in MongoClinet
-      if (err) console.log(err);
-      console.log(result);
-    });
+
+  //! Delete SingleDocument.
+  // let query = { roll: 3 };
+  // or
+  // let query={roll:{$lt:2}}
+  // actualDb.collection("students").deleteOne(query, (err, result) => {
+  //   if (err) console.log(err);
+  //   console.log("Single Document Deleted Sucessfully", result);
+  // });
+
+  //! Delete ManyDocuments.
+  let query = { roll: { $lt: 3 } };
+  actualDb.collection("students").deleteMany(query, (err, result) => {
+    if (err) console.log(err);
+    console.log("Many Documents Deleted Sucessfully", result);
+  });
 });
