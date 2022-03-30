@@ -1,0 +1,16 @@
+Mongo : 
+        This command basically takes you inside mongobd, this can have multiple databases.
+
+Mongo Client:
+        it allows you to communicate and make all the
+        queries from VS code instead of making e queries from mongo shell.
+use school:
+        this command is use to create the database if db is not already existed.and if
+        exists then it will switch you to that database.
+
+db.createCollection("students") is used to create the collection in database.
+
+**  actualDb.collection("students").find().toArray() //to array extra in vs code
+
+If the collection is empty then the output will not be blank like mongo shell
+instead it will return an empty array.
